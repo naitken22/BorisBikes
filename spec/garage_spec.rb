@@ -20,4 +20,5 @@ describe Garage do
 		expect(bikeshop.bikes.count).to eq 1
 	end
 
+	
 end

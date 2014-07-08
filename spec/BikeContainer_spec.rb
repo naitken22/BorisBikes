@@ -8,7 +8,7 @@ class ContainerHolder
 	def initialize(options = {})
 		self.capacity = options.fetch(:capacity, capacity)
 	end
-	
+
  end
 
 describe BikeContainer do 
@@ -54,4 +54,29 @@ describe BikeContainer do
 		holder.dock(broken_bike)
 		expect(holder.available_bikes).to eq([working_bike])
 	end
+
+	context 'release' do
+
+		it 'gives an error when passed an empty argument' do
+			expect{holder.release}.to raise_error(ArgumentError)
+		end
+			# end
+
+		it 'raises an error if the argument is not a bike that the station holds' do
+			expect{holder.release(Garage.new)}.to raise_error(RuntimeError)
+		end
+	end
+
+	context 'dock' do
+
+		it 'gives an arror when passed an empty argument' do
+			expect{holder.dock}.to raise_error(ArgumentError)
+		end
+
+		it 'gives an error if something is tried to dock that is not a bike' do
+			expect{holder.dock(Garage.new)}.to raise_error(RuntimeError)
+		end
+
+	end
+
 end

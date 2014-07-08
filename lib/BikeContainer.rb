@@ -16,12 +16,16 @@ module BikeContainer
 	end
 
 	def dock(bike)
+		raise "bike does not exist" if !bike.instance_of?(Bike)
 		raise "Station is full" if is_full?
 		bikes << bike
 	end
 
 	def release(bike)
+		# begin
+		raise "bike does not exist" if (!bikes.include?(bike))
 		bikes.reject! {|bikes| bikes == bike}
+		
 	end
 
 	def is_full?
@@ -31,5 +35,7 @@ module BikeContainer
 	def available_bikes
 		bikes.reject {|bike| bike.broken?}
 	end
+
+	
 
 end
