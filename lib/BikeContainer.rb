@@ -7,6 +7,10 @@ module BikeContainer
 		@bikes ||=[]
 	end
 
+	def bikes=(value)
+		@bikes = value
+	end
+
 	def capacity
 		@capacity ||= DEFAULT_CAPACITY
 	end
@@ -25,7 +29,7 @@ module BikeContainer
 		# begin
 		raise "bike does not exist" if (!bikes.include?(bike))
 		bikes.reject! {|bikes| bikes == bike}
-		
+		bike
 	end
 
 	def is_full?
@@ -35,6 +39,8 @@ module BikeContainer
 	def available_bikes
 		bikes.reject {|bike| bike.broken?}
 	end
+
+
 
 	
 
