@@ -39,7 +39,9 @@ module BikeContainer
 		bikes.reject {|bike| bike.broken?}
 	end
 
-
+	def broken_bikes
+		bikes - available_bikes
+	end
 
 	
 

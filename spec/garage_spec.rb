@@ -1,10 +1,9 @@
-require 'garage'
-require 'bike'
+require './lib/garage'
+require './lib/bike'
+require './spec/BikeContainer_spec.rb'
 
 describe Garage do 
 
-	let(:broken_bike) {Bike.new.break!}
-	let(:broken_bike2) {Bike.new.break!}
 	let(:bikeshop) {Garage.new(capacity: 123)}
 
 	it_behaves_like 'a bike container'
@@ -15,9 +14,10 @@ describe Garage do
 	end
 
 	it 'should be able to fix multiple broken bikes' do
-		bikes = [broken_bike, broken_bike2]
-		bikeshop.fix_bike(bikes)
-		expect(broken_bike.broken?).to be false
+		broken_bike1 = double :bike, broken?: true, instance_of?: Bike
+		bikeshop.dock(broken_bike1)
+		expect(broken_bike1).to receive(:fix!)
+		bikeshop.fix_all_broken_bikes
 	end
 
 	

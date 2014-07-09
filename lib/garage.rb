@@ -11,10 +11,8 @@ include BikeContainer
 		self.capacity = capacity
 	end
 
-	def fix_bike(bikes)
-		bikes.each {|bike| bike.fix!}
+	def fix_all_broken_bikes
+		broken_bikes.each { |broken_bike| broken_bike.fix! } 
 	end
-
-	
 
 end
