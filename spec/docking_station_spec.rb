@@ -3,6 +3,8 @@ require 'bike'
 
 describe Dockingstation do
 
+	it_behaves_like 'a bike container'
+
   let(:station) { Dockingstation.new(:capacity => 123, :bikes => [bike1=Bike.new.break!, bike2=Bike.new, bike3=Bike.new])}
 
 	  it "should allow setting default capacity on initialising" do

@@ -10,9 +10,8 @@ include BikeContainer
 		self.capacity = options.fetch(:capacity, capacity)
 	end
 
-	def fix_bike(bike)
-		dock(bike)
-		bike.fix!
+	def fix_bike(bikes)
+		bikes.each {|bike| bike.fix!}
 	end
 
 	

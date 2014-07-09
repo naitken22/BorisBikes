@@ -4,10 +4,14 @@ require './lib/bike'
 require './lib/garage'
 
 describe Van do 
+
 	
-	let(:bikevan) {Van.new(:capacity => 123)}
+	it_behaves_like 'a bike container'
+
+	let(:old_street) { Dockingstation.new(:capacity => 123, :bikes => [bike1=Bike.new.break!, bike2=Bike.new, bike3=Bike.new])}
 	let(:specialized) {Bike.new.break!}
-	let(:old_street) {Dockingstation.new}
+	let(:bikevan) {Van.new(:capacity => 123)}
+	let(:bikeshop) {Garage.new(capacity: 123)}
 
 	it 'should allow setting of default capacity' do
 		expect(bikevan.capacity).to eq 123
@@ -16,14 +20,24 @@ describe Van do
 
 
 	it 'should collect broken bikes from the docking station' do
-		bike1 = Bike.new.break!
-		bike2 = Bike.new
-		bike3 = Bike.new
-		old_street.dock(bike1)
-		old_street.dock(bike2)
-		old_street.dock(bike3)
 		bikevan.collect_broken_bikes(old_street)
-		expect(bikevan.bikes).to eq [bike1]
+		expect(bikevan.bikes.count).to eq 1
+	end
+
+	it 'should release the broken bikes at the garage and dock in the garage' do 
+		bikevan.collect_broken_bikes(old_street)
+		bikevan.deposit_at(bikeshop)
+		expect(bikevan.bikes.count).to eq 0
+		expect(bikeshop.bikes.count).to eq 1
+	end
+
+	it 'should collect the fixed bikes from the garage' do
+		bikevan.collect_broken_bikes(old_street)
+		bikevan.deposit_at(bikeshop)
+		bikeshop.fix_bike(bikeshop.bikes)
+		bikevan.pickup_fixed_bikes(bikeshop)
+		expect(bikeshop.bikes.count).to eq 0
+		expect(bikevan.bikes.count).to eq 1
 
 	end
 

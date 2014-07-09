@@ -4,20 +4,20 @@ require 'bike'
 describe Garage do 
 
 	let(:broken_bike) {Bike.new.break!}
+	let(:broken_bike2) {Bike.new.break!}
 	let(:bikeshop) {Garage.new(capacity: 123)}
+
+	it_behaves_like 'a bike container'
+
 
 	it 'should allow setting of default capacity' do
 		expect(bikeshop.capacity).to eq 123
 	end
 
-	it 'should be able to fix a broken bike' do
-		bikeshop.fix_bike(broken_bike)
+	it 'should be able to fix multiple broken bikes' do
+		bikes = [broken_bike, broken_bike2]
+		bikeshop.fix_bike(bikes)
 		expect(broken_bike.broken?).to be false
-	end
-
-	it 'can dock bikes' do
-		bikeshop.dock(broken_bike)
-		expect(bikeshop.bikes.count).to eq 1
 	end
 
 	

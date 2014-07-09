@@ -1,6 +1,7 @@
 require 'BikeContainer'
 require 'bike'
 
+
 class ContainerHolder
 
 	include BikeContainer
@@ -11,8 +12,8 @@ class ContainerHolder
 
  end
 
-describe BikeContainer do 
-
+shared_examples 'a bike container' do
+	let(:container) {described_class.new(capacity => 10)}
 	let(:batavus) {Bike.new}
 	let(:holder) {ContainerHolder.new}
 
