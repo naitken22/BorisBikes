@@ -6,7 +6,8 @@ class Van
 include BikeContainer
 
 	def initialize(options = {})
-		self.capacity = options.fetch(:capacity, capacity)
+		capacity = options.fetch(:capacity, capacity).instance_of?(Fixnum) ? options[:capacity] : 10
+		self.capacity = capacity
 	end
 
 	def collect_broken_bikes(station)

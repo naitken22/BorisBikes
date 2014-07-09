@@ -26,7 +26,6 @@ module BikeContainer
 	end
 
 	def release(bike)
-		# begin
 		raise "bike does not exist" if (!bikes.include?(bike))
 		bikes.reject! {|bikes| bikes == bike}
 		bike
@@ -40,7 +39,7 @@ module BikeContainer
 		bikes.reject {|bike| bike.broken?}
 	end
 
-	
+
 
 	
 
