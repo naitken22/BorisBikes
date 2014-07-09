@@ -1,5 +1,5 @@
 require './lib/BikeContainer'
-require './lib/bike'
+# require './lib/bike'
 
 class Van
 
@@ -20,6 +20,11 @@ include BikeContainer
 
 	def pickup_fixed_bikes(garage)
 		garage.bikes.each{|bike| dock(garage.release(bike))}
+	end
+
+
+	def collect_broken_bikes_from(station)
+		station.bikes.each{ |bike| dock(bike) if bike.broken?}
 	end
 
 end
