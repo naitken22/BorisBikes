@@ -40,7 +40,7 @@ module BikeContainer
 		bikes.reject {|bike| bike.broken?}
 	end
 
-
+	
 
 	
 

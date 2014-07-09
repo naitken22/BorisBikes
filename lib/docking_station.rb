@@ -5,7 +5,8 @@ class Dockingstation
 	include BikeContainer
 
 	def initialize(options = {})
-		self.capacity = options.fetch(:capacity, capacity)
+		capacity = options.fetch(:capacity, capacity).instance_of?(Fixnum) ? options[:capacity] : 10
+		self.capacity = capacity
 		self.bikes = options.fetch(:bikes, bikes)
 	end
 
@@ -19,5 +20,7 @@ class Dockingstation
 	def list_broken
 		list_broken = bikes.find_all {|bike| bike.broken? == true}
 	end
+
+	
 
 end

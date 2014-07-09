@@ -13,6 +13,7 @@ describe Van do
 	let(:bikevan) {Van.new(:capacity => 123)}
 	let(:bikeshop) {Garage.new(capacity: 123)}
 
+
 	it 'should allow setting of default capacity' do
 		expect(bikevan.capacity).to eq 123
 	end
@@ -38,6 +39,16 @@ describe Van do
 		bikevan.pickup_fixed_bikes(bikeshop)
 		expect(bikeshop.bikes.count).to eq 0
 		expect(bikevan.bikes.count).to eq 1
+	end
+
+	it 'should deposit the fixed bikes at the station' do
+		bikevan.collect_broken_bikes(old_street)
+		bikevan.deposit_at(bikeshop)
+		bikeshop.fix_bike(bikeshop.bikes)
+		bikevan.pickup_fixed_bikes(bikeshop)
+		bikevan.deposit_at(old_street)
+		expect(bikevan.bikes.count).to eq 0
+		expect(old_street.bikes.count).to eq 3
 
 	end
 

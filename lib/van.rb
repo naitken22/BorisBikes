@@ -13,8 +13,8 @@ include BikeContainer
 		station.list_broken.each{ |bike| dock(station.release(bike)) }
 	end
 
-	def deposit_at(garage)
-		bikes.each{|bike| garage.dock(release(bike))}
+	def deposit_at(location)
+		bikes.each{|bike| location.dock(release(bike))}
 	end
 
 	def pickup_fixed_bikes(garage)

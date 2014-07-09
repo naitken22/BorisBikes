@@ -28,6 +28,10 @@ describe Dockingstation do
 		expect(station.list_broken.count).to eq 1
 	end
 
+	it 'will not take a capacity that is not a positive number' do
+		stupid_station = Dockingstation.new(:capacity => "hahaha")
+		expect(stupid_station.capacity).to eq 10
+	end
 
 
 end
