@@ -9,13 +9,10 @@ class Dockingstation
 		self.capacity = capacity
 		self.bikes = options.fetch(:bikes, bikes)
 	end
-
-
 	
 	def is_empty?
 		bikes.empty?
 	end
-
 
 	def list_broken
 		list_broken = bikes.find_all {|bike| bike.broken? == true}

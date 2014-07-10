@@ -3,7 +3,7 @@ require 'bike'
 
 describe Dockingstation do
 
-	it_behaves_like 'a bike container'
+	# it_behaves_like 'a bike container'
 
   let(:station) { Dockingstation.new(:capacity => 123, :bikes => [bike1=Bike.new.break!, bike2=Bike.new, bike3=Bike.new])}
 
@@ -12,14 +12,16 @@ describe Dockingstation do
 	  end
 
   	it "can check if docking_station is empty" do
-	  old_street = Dockingstation.new
-	  specialized = Bike.new
-	  old_street.dock(specialized)
-	  expect(old_street.is_empty?).to be false
+	  station = Dockingstation.new
+	  bike = double :bike, broken?: false, instance_of?: Bike
+	  station.dock(bike)
+	  expect(station.is_empty?).to be false
 	end
 
 	it 'can be initialized with any number of bikes' do
-		bikes = [:bike1, :bike2]
+		bike = double :bike, broken?: false, instance_of?: Bike
+		bike2 = double :bike, broken?: false, instance_of?: Bike
+		bikes = [bike, bike2]
 		station = Dockingstation.new(bikes: bikes)
 		expect(station.bikes).to eq bikes
 	end
@@ -29,8 +31,8 @@ describe Dockingstation do
 	end
 
 	it 'will not take a capacity that is not a positive number' do
-		stupid_station = Dockingstation.new(:capacity => "hahaha")
-		expect(stupid_station.capacity).to eq 10
+		station = Dockingstation.new(:capacity => "hahaha")
+		expect(station.capacity).to eq 10
 	end
 
 
