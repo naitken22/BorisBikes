@@ -14,12 +14,19 @@ include BikeContainer
 		station.list_broken.each{ |bike| dock(station.release(bike)) }
 	end
 
-	def deposit_at(location)
-		bikes.each{|bike| location.dock(release(bike))}
+	def deposit_broken_bikes_at(garage)
+		broken_bikes.each{|bike| garage.dock(release(bike))}
 	end
 
 	def pickup_fixed_bikes(garage)
-		garage.bikes.each{|bike| dock(garage.release(bike))}
+		garage.available_bikes.each do |bike| 
+			garage.release(bike)
+			dock(bike)
+		end
+	end
+
+	def deposit_fixed_bikes_at(dockingstation)
+		available_bikes.each{|bike| dockingstation.dock(release(bike))}
 	end
 
 
