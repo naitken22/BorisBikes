@@ -1,5 +1,4 @@
 require './lib/garage'
-require './lib/bike'
 require './spec/BikeContainer_spec.rb'
 
 describe Garage do 
@@ -14,7 +13,7 @@ describe Garage do
 	end
 
 	it 'should be able to fix multiple broken bikes' do
-		broken_bike1 = double :bike, broken?: true, instance_of?: Bike
+		broken_bike1 = double :bike, broken?: true, instance_of?: 'Bike'
 		bikeshop.dock(broken_bike1)
 		expect(broken_bike1).to receive(:fix!)
 		bikeshop.fix_all_broken_bikes

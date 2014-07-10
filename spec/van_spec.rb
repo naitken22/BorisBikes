@@ -1,16 +1,14 @@
 require './lib/van'
-require './lib/docking_station'
-# require './spec/docking_station_spec'
-require './lib/bike' 
+require './spec/BikeContainer_spec'
 # require './lib/garage'
 
 describe Van do 
 
 	
-	# it_behaves_like 'a bike container' 
+	it_behaves_like 'a bike container' 
 	let(:bikevan) {Van.new(:capacity => 123)}
-	let(:broken_bike) {double :bike, broken?: true, instance_of?: Bike}
-	let(:working_bike) {double :bike, broken?: false, instance_of?: Bike}
+	let(:broken_bike) {double :bike, broken?: true, instance_of?: 'Bike'}
+	let(:working_bike) {double :bike, broken?: false, instance_of?: 'Bike'}
 	let(:garage) {double :garage, available_bikes: [working_bike], release: :bike, dock: nil}
 	let(:station) {double :docking_station, bikes: [broken_bike, working_bike], dock: nil}
 
