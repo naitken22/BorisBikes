@@ -25,7 +25,9 @@ git clone https://github.com/aitkenster/BorisBikes.git
 ###How to run it
 
 ```sh
-cd XXXXX
+cd BorisBikes
+irb
+require './run.rb'
 
 ```
 
@@ -35,9 +37,5 @@ cd XXXXX
 cd XXXXX
 rspec
 ``` 
-
-###Future Improvements
-
-+
 
 NB - respository is forked as this was a pair project and we didn't use my laptop.
