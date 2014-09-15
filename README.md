@@ -15,6 +15,7 @@ This project was to create a program to manage a city cycle hire system.
 
 + Ruby
 + RSPEC
++ Git
 
 ###How to set it up
 
@@ -34,7 +35,7 @@ require './run.rb'
 ###How to test it
 
 ```sh
-cd XXXXX
+cd BorisBikes
 rspec
 ``` 
 
